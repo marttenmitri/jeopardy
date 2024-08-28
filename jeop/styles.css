@@ -1,3 +1,4 @@
+/* General styling for body */
 body {
     font-family: Arial, sans-serif;
     background-color: #282c34;
@@ -6,55 +7,49 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    position: relative; /* For positioning #image-section */
 }
 
-#kuldvillak-button {
-    display: none;
-    width: 100%;
-    color: gold;
-    text-align: center;
-    padding: 15px;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-}
-
-#add-team-section {
-    margin-top: 20px;
-    text-align: center;
-}
-
-#add-team-form {
-    margin-bottom: 20px;
-}
-
-#team-name-input {
-    padding: 10px;
-    margin-right: 10px;
-    font-size: 1.2em;
-}
-
+/* Button styling */
 button {
-    padding: 10px 20px;
-    font-size: 1.2em;
+    padding: 15px 25px; /* Increase button padding */
+    font-size: 1.5em; /* Increase button font size */
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
+/* Start game button styling */
 #start-game-button {
     background-color: #2ecc71;
-    margin-left: 10px;
+    margin-left: 15px; /* Increase margin left for better spacing */
 }
 
 #start-game-button:hover {
     background-color: #27ae60;
 }
 
+/* Section styling for adding teams */
+#add-team-section {
+    margin-top: 20px;
+    text-align: center;
+    flex: 1; /* Allow this section to grow and push image section down */
+}
+
+/* Form styling */
+#add-team-form {
+    margin-bottom: 20px;
+}
+
+/* Input field styling */
+#team-name-input {
+    padding: 15px; /* Increase padding for larger input */
+    margin-right: 15px; /* Increase spacing between input and button */
+    font-size: 1.5em; /* Increase font size */
+}
+
+/* Styling for added teams */
 #added-teams {
     margin-top: 20px;
     text-align: center;
@@ -64,16 +59,15 @@ button {
     margin-top: 10px;
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 20px; /* Increased space between teams */
     flex-wrap: wrap;
 }
 
 .team-list-item {
     background-color: #444;
-    padding: 10px;
+    padding: 15px; /* Increase padding for larger items */
     border-radius: 5px;
-    font-size: 1.2em;
-    animation: shake 0.5s ease-in-out;
+    font-size: 1.5em; /* Increase font size */
 }
 
 @keyframes shake {
@@ -81,16 +75,17 @@ button {
         transform: translateX(0);
     }
     25% {
-        transform: translateX(-5px);
+        transform: translateX(-10px);
     }
     50% {
-        transform: translateX(5px);
+        transform: translateX(10px);
     }
     75% {
-        transform: translateX(-5px);
+        transform: translateX(-10px);
     }
 }
 
+/* Special question effect */
 #special-question-effect {
     position: fixed;
     top: 50%;
@@ -118,19 +113,21 @@ button {
     display: none;
 }
 
+/* Game section styling */
 #game-section {
-    width: 100%; /* Make the game section take up the full width */
-    max-width: 1200px; /* Make the game board wider */
-    margin: 50px auto 0; /* Add margin-top to create space above the game board */
-    padding-top: 20px; /* Add some padding at the top for extra space */
+    width: 100%;
+    max-width: 1200px;
+    margin: 50px auto 0;
+    padding-top: 20px;
 }
 
+/* Team scores styling */
 #team-scores {
     display: flex;
     justify-content: space-around;
     margin: 20px 0;
     gap: 10px;
-    width: 100%; /* Ensure team scores are as wide as the board */
+    width: 100%;
 }
 
 .team {
@@ -146,12 +143,12 @@ button {
 }
 
 .highlighted-team {
-    background-color: #ffa500; /* Highlighted team color */
+    background-color: #ffa500;
 }
 
 .round-winner {
     background-color: #00bfff;
-    transition: background-color 0.3s ease; /* Smooth transition for better visibility */
+    transition: background-color 0.3s ease;
 }
 
 .team h3 {
@@ -175,6 +172,7 @@ button {
     margin-top: auto;
 }
 
+/* Game board styling */
 #game-board {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -202,6 +200,7 @@ button {
     background-color: #0056b3;
 }
 
+/* Modal styling */
 .modal {
     display: none;
     position: fixed;
@@ -231,6 +230,7 @@ button {
     margin: 20px 0;
 }
 
+/* Answer buttons styling */
 #answer-buttons {
     display: flex;
     justify-content: center;
@@ -262,6 +262,7 @@ button {
     opacity: 0.8;
 }
 
+/* Team selection buttons */
 #team-selection-buttons {
     display: flex;
     justify-content: space-around;
@@ -282,3 +283,64 @@ button {
 .team-select-button:hover {
     background-color: #0056b3;
 }
+
+#kuldvillak-button {
+    display: none;
+    width: 100%;
+    color: gold;
+    background-color: #282c34;
+    text-align: center;
+    padding: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+/* Image section styling */
+#image-section {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%; /* Total width of image section */
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #333; /* Optional: Background color for better contrast */
+    z-index: 1; /* Ensure it's on top of other content */
+}
+
+/* Styling for images */
+#image-section img {
+    height: 50vh; /* Set height to 50% of viewport height */
+    max-height: 50vh; /* Ensure height does not exceed 50% of viewport height */
+    width: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure images fit within their container without distortion */
+    margin: 0 5px; /* Optional: Add spacing between images */
+}
+
+#cancel-selection {
+    margin-top: 30px;
+    background-color: #e74c3c; /* Red color */
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#cancel-selection:hover {
+    background-color: #c0392b; /* Darker red on hover */
+}
+
+#cancel-selection:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(231, 76, 60, 0.7); /* Glow effect on focus */
+}
+

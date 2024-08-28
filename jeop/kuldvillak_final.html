@@ -23,7 +23,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            font-size: 2em;
+            font-size: 1.5em; /* Slightly smaller font size */
             border-radius: 10px;
             cursor: pointer;
             position: relative;
@@ -56,21 +56,32 @@
         }
 
         .show-answer-button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: gold;
-            color: black;
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: transparent;
+            color: #ccc;
             border: none;
-            border-radius: 5px;
-            font-size: 1em;
-            font-weight: bold;
+            border-bottom: 1px solid #ccc;
+            font-size: 0.9em; /* Smaller font size for minimalism */
             cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .show-answer-button:hover {
+            color: white;
+        }
+
+        #kuldvillak-answer {
+            font-size: 1.2em; /* Smaller font size for the answer */
+            margin-top: 10px;
+            display: none;
+            color: #ccc;
         }
 
         /* Editable Score Styles */
         .editable-score {
             cursor: pointer;
-            border-bottom: 1px dashed white;
+            border-bottom: 1px white;
         }
 
         .editable-score:focus {
@@ -92,8 +103,8 @@
             </div>
             <div class="back">
                 <div id="kuldvillak-question">This is the KULDVILLAK question.</div>
-                <button class="show-answer-button" id="reveal-answer-button">Reveal Answer</button>
-                <div id="kuldvillak-answer" style="display: none; margin-top: 20px;">
+                <button class="show-answer-button" id="reveal-answer-button">Show Answer</button>
+                <div id="kuldvillak-answer">
                     This is the KULDVILLAK answer.
                 </div>
             </div>
@@ -106,16 +117,30 @@
             const revealAnswerButton = document.getElementById('reveal-answer-button');
             const kuldvillakAnswer = document.getElementById('kuldvillak-answer');
 
+            // Preload the sound
+            const hoebevillakSound = new Audio('sounds/thinking.mp3');
+            hoebevillakSound.preload = 'auto';
+
             // Flip the card to show the question when clicked
             card.addEventListener('click', () => {
                 card.classList.toggle('flipped');
             });
 
-            // Show the answer when the "Reveal Answer" button is clicked
+            // Show the answer when the "Show Answer" button is clicked
             revealAnswerButton.addEventListener('click', (event) => {
                 event.stopPropagation(); // Prevent card from flipping back
                 kuldvillakAnswer.style.display = 'block';
                 revealAnswerButton.style.display = 'none';
+            });
+
+            // Play the sound and show the effect when the card flips
+            card.addEventListener('click', () => {
+                if (card.classList.contains('flipped')) {
+                    hoebevillakSound.currentTime = 0;
+                    hoebevillakSound.play().catch(error => {
+                        console.error("Audio playback failed:", error);
+                    });
+                }
             });
 
             const teamScores = JSON.parse(localStorage.getItem('teamScores'));

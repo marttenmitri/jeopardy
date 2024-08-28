@@ -18,6 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const questions = document.querySelectorAll('.question');
     const incorrectButton = document.getElementById('incorrect-button');
     const correctButton = document.getElementById('correct-button');
+    const hobevillakSound = new Audio('sounds/hobevillak.mp3');
+
+    // New sound additions
+    const backgroundMusic = new Audio('sounds/teams.mp3');
+    const selectQuestionSound = new Audio('sounds/flip.mp3');
+
+
 
     let teams = [];
     let currentQuestionValue = 0;
@@ -27,6 +34,32 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentSpecialQuestion = null;
     let unansweredQuestions = [];
     let answeredQuestions = [];
+    let backgroundMusicPlaying = false;
+    let firstClick = true
+    function startBackgroundMusic() {
+        if (!backgroundMusicPlaying) {
+            backgroundMusic.loop = true;
+            backgroundMusic.play().catch(error => {
+                console.error("Background music playback failed:", error);
+            });
+            backgroundMusicPlaying = true;
+        }
+    }
+
+    // Stop the background music
+    function stopBackgroundMusic() {
+        if (backgroundMusicPlaying) {
+            backgroundMusic.pause();
+            backgroundMusicPlaying = false;
+        }
+    }
+
+    document.addEventListener('click', () => { 
+        if (firstClick){
+            startBackgroundMusic();
+            firstClick = false
+        }
+    });
 
     function updateTeamScores() {
         teamScoresContainer.innerHTML = '';
@@ -150,7 +183,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const specialEffectDiv = document.getElementById('special-question-effect');
         specialEffectDiv.classList.remove('hidden');
         specialEffectDiv.style.display = 'block';
-
+        // Play the sound immediately
+        hobevillakSound.currentTime = 0; // Rewind to start in case it was played before
+        hobevillakSound.play().catch(error => {
+            console.error("Audio playback failed:", error);
+        });
         setTimeout(() => {
             specialEffectDiv.style.display = 'none';
         }, 4000); // Hide after 4 seconds
@@ -191,7 +228,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     startGameButton.addEventListener('click', () => {
+        stopBackgroundMusic();
         if (teams.length > 0) {
+            // Stop background music
+            backgroundMusic.pause();
+            backgroundMusic.currentTime = 0;
+
             addTeamSection.style.display = 'none';
             gameSection.style.display = 'block';
             updateTeamButtons();
@@ -205,6 +247,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     questions.forEach(question => {
         question.addEventListener('click', () => {
+            // Play sound when question is selected
+            selectQuestionSound.currentTime = 0;
+            selectQuestionSound.play().catch(error => {
+                console.error("Audio playback failed:", error);
+            });
+
             if (specialQuestions.includes(question) && lastWinningTeamIndex !== null) {
                 const lastWinningTeam = teams[lastWinningTeamIndex];
 
