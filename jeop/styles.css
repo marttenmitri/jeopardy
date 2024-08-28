@@ -1,0 +1,277 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #282c34;
+    color: white;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#add-team-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#add-team-form {
+    margin-bottom: 20px;
+}
+
+#team-name-input {
+    padding: 10px;
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#start-game-button {
+    background-color: #2ecc71;
+    margin-left: 10px;
+}
+
+#start-game-button:hover {
+    background-color: #27ae60;
+}
+
+#added-teams {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#team-list {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.team-list-item {
+    background-color: #444;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    75% {
+        transform: translateX(-5px);
+    }
+}
+
+#special-question-effect {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 3em;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 10;
+    display: none;
+    animation: fade-in-out 4s forwards;
+}
+
+@keyframes fade-in-out {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.hidden {
+    display: none;
+}
+
+#game-section {
+    width: 100%; /* Make the game section take up the full width */
+    max-width: 1200px; /* Make the game board wider */
+    margin: 50px auto 0; /* Add margin-top to create space above the game board */
+    padding-top: 20px; /* Add some padding at the top for extra space */
+}
+
+#team-scores {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    gap: 10px;
+    width: 100%; /* Ensure team scores are as wide as the board */
+}
+
+.team {
+    background-color: #444;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    flex: 1;
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.highlighted-team {
+    background-color: #ffa500; /* Highlighted team color */
+}
+
+.round-winner {
+    background-color: #00bfff;
+    transition: background-color 0.3s ease; /* Smooth transition for better visibility */
+}
+
+.team h3 {
+    word-wrap: break-word;
+    margin: 0;
+    padding: 5px 0;
+    font-size: 1.2em;
+}
+
+.team p {
+    margin: 10px 0 0;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+#team-scores .team {
+    flex: 1 1 auto;
+}
+
+#team-scores .team p {
+    margin-top: auto;
+}
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.category {
+    background-color: #0055a5;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.5em;
+    border-radius: 5px;
+}
+
+.question {
+    background-color: #007bff;
+    padding: 30px;
+    text-align: center;
+    font-size: 1.5em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.question:hover {
+    background-color: #0056b3;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 1.5em;
+}
+
+#modal-image {
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
+}
+
+#answer-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.score-button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.red {
+    background-color: #e74c3c;
+}
+
+.green {
+    background-color: #2ecc71;
+}
+
+.score-button:hover {
+    opacity: 0.8;
+}
+
+#team-selection-buttons {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.team-select-button {
+    background-color: #007bff;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.team-select-button:hover {
+    background-color: #0056b3;
+}

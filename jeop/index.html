@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuldvillak</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="add-team-section">
+        <!-- Add Team Form -->
+        <div id="add-team-form">
+            <input type="text" id="team-name-input" placeholder="Enter team name">
+            <button id="add-team-button">Add Team</button>
+            <button id="start-game-button">Start Game</button>
+        </div>
+        <!-- Display added teams -->
+        <div id="added-teams">
+            <h3>Teams Added:</h3>
+            <div id="team-list">
+                <!-- Dynamic team list will be added here -->
+            </div>
+        </div>
+    </div>
+
+    <div id="game-section" style="display: none;">
+        <!-- Jeopardy Game Board -->
+        <div id="game-board">
+            <!-- Category Headers -->
+            <div class="category">Varia</div>
+            <div class="category">Raha</div>
+            <div class="category">Krimi</div>
+            <div class="category">Joogid</div>
+            <div class="category">Sünnipäevad</div>
+
+            <!-- Questions: Row 1 -->
+            <div class="question" data-question="Question 1?" data-answer="Answer 1" data-image="img/4.png">100</div>
+            <div class="question" data-question="Question 2?" data-answer="Answer 2" data-image="img/5.jpg">100</div>
+            <div class="question" data-question="Question 3?" data-answer="Answer 3">100</div>
+            <div class="question" data-question="Question 4?" data-answer="Answer 4" data-image="image4.jpg">100</div>
+            <div class="question" data-question="Question 5?" data-answer="Answer 5" data-image="image5.jpg">100</div>
+
+            <!-- Questions: Row 2 -->
+            <div class="question" data-question="Question 6?" data-answer="Answer 6" data-image="image6.jpg">200</div>
+            <div class="question" data-question="Question 7?" data-answer="Answer 7" data-image="image7.jpg">200</div>
+            <div class="question" data-question="Question 8?" data-answer="Answer 8" data-image="image8.jpg">200</div>
+            <div class="question" data-question="Question 9?" data-answer="Answer 9" data-image="image9.jpg">200</div>
+            <div class="question" data-question="Question 10?" data-answer="Answer 10" data-image="image10.jpg">200</div>
+
+            <!-- Questions: Row 3 -->
+            <div class="question" data-question="Question 11?" data-answer="Answer 11" data-image="image11.jpg">300</div>
+            <div class="question" data-question="Question 12?" data-answer="Answer 12" data-image="image12.jpg">300</div>
+            <div class="question" data-question="Question 13?" data-answer="Answer 13" data-image="image13.jpg">300</div>
+            <div class="question" data-question="Question 14?" data-answer="Answer 14" data-image="image14.jpg">300</div>
+            <div class="question" data-question="Question 15?" data-answer="Answer 15" data-image="image15.jpg">300</div>
+
+            <!-- Questions: Row 4 -->
+            <div class="question" data-question="Question 16?" data-answer="Answer 16" data-image="image16.jpg">400</div>
+            <div class="question" data-question="Question 17?" data-answer="Answer 17" data-image="image17.jpg">400</div>
+            <div class="question" data-question="Question 18?" data-answer="Answer 18" data-image="image18.jpg">400</div>
+            <div class="question" data-question="Question 19?" data-answer="Answer 19" data-image="image19.jpg">400</div>
+            <div class="question" data-question="Question 20?" data-answer="Answer 20" data-image="image20.jpg">400</div>
+
+            <!-- Questions: Row 5 -->
+            <div class="question" data-question="Question 21?" data-answer="Answer 21" data-image="image21.jpg">500</div>
+            <div class="question" data-question="Question 22?" data-answer="Answer 22" data-image="image22.jpg">500</div>
+            <div class="question" data-question="Question 23?" data-answer="Answer 23" data-image="image23.jpg">500</div>
+            <div class="question" data-question="Question 24?" data-answer="Answer 24" data-image="image24.jpg">500</div>
+            <div class="question" data-question="Question 25?" data-answer="Answer 25" data-image="image25.jpg">500</div>
+        </div>
+
+        <!-- Place the team scores section here, below the game board -->
+        <div id="team-scores">
+            <!-- Dynamic team scores will be added here -->
+        </div>
+
+        <div id="special-question-effect" class="hidden">
+            <h1>Hõbevillak</h1>
+        </div>
+        
+        <!-- Buttons for Correct and Incorrect answers -->
+        <div id="answer-buttons">
+            <button id="incorrect-button" class="score-button red">Incorrect (-)</button>
+            <button id="correct-button" class="score-button green">Correct (+)</button>
+        </div>
+    </div>
+
+    <!-- Modal for displaying the question -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <p id="modal-question"></p>
+            <img id="modal-image" src="" alt="Question Image">
+            <button id="show-answer">Show Answer</button>
+            <p id="modal-answer" style="display: none;"></p>
+            <button class="close-button">&times;</button>
+        </div>
+    </div>
+
+    <!-- Team Selection Modal -->
+    <div id="team-selection-modal" class="modal">
+        <div class="modal-content">
+            <p>Select a team:</p>
+            <div id="team-selection-buttons">
+                <!-- Dynamic team buttons will be added here -->
+            </div>
+            <button id="cancel-selection" class="close-button">Cancel</button>
+        </div>
+    </div>
+
+    <!-- KULDVILLAK Button -->
+    <button id="kuldvillak-button" style="display:none; position: fixed; bottom: 20px; right: 20px; padding: 10px 20px; background-color: gold; color: black; border: none; border-radius: 5px; cursor: pointer;">
+        KULDVILLAK
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
