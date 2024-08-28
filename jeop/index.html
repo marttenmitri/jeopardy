@@ -96,6 +96,9 @@
         </div>
     </div>
 
+    <!-- KULDVILLAK Header -->
+    <div id="kuldvillak-button" onclick="goToKuldvillak()">KULDVILLAK</div>
+
     <!-- Team Selection Modal -->
     <div id="team-selection-modal" class="modal">
         <div class="modal-content">
@@ -107,11 +110,22 @@
         </div>
     </div>
 
-    <!-- KULDVILLAK Button -->
-    <button id="kuldvillak-button" style="display:none; position: fixed; bottom: 20px; right: 20px; padding: 10px 20px; background-color: gold; color: black; border: none; border-radius: 5px; cursor: pointer;">
-        KULDVILLAK
-    </button>
+    <script>
+        function goToKuldvillak() {
+            const teamScores = Array.from(document.querySelectorAll('.team')).map(team => ({
+                name: team.querySelector('h3').textContent,
+                score: parseInt(team.querySelector('p').textContent, 10),
+            }));
+            localStorage.setItem('teamScores', JSON.stringify(teamScores));
+            window.location.href = 'kuldvillak_final.html';
+        }
 
+        document.getElementById('start-game-button').addEventListener('click', () => {
+            if (document.querySelectorAll('.team-list-item').length > 0) {
+                document.getElementById('kuldvillak-button').style.display = 'block';
+            }
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

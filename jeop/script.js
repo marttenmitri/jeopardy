@@ -40,6 +40,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function goToKuldvillak() {
+        const teamScores = Array.from(document.querySelectorAll('.team')).map(team => ({
+            name: team.querySelector('h3').textContent,
+            score: parseInt(team.querySelector('p').textContent, 10),
+        }));
+        localStorage.setItem('teamScores', JSON.stringify(teamScores));
+        window.location.href = 'kuldvillak_final.html';
+    }
+
+    document.getElementById('start-game-button').addEventListener('click', () => {
+        if (document.querySelectorAll('.team-list-item').length > 0) {
+            document.getElementById('kuldvillak-button').style.display = 'block';
+        }
+    });
+
     function updateTeamButtons() {
         teamSelectionButtonsContainer.innerHTML = '';
         teams.forEach((team, index) => {

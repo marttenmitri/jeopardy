@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuldvillak Final</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Card Styling */
+        .card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            width: 500px;
+            height: 500px;
+            background-color: #0055a5; /* Blue color similar to the main game cards */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 2em;
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s;
+            perspective: 1000px;
+        }
+
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card .front,
+        .card .back {
+            position: absolute;
+            backface-visibility: hidden;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .card .back {
+            transform: rotateY(180deg);
+        }
+
+        .show-answer-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: gold;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Editable Score Styles */
+        .editable-score {
+            cursor: pointer;
+            border-bottom: 1px dashed white;
+        }
+
+        .editable-score:focus {
+            outline: none;
+            border-bottom: 2px solid gold;
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="team-scores">
+        <!-- Dynamic team scores for teams with scores > 0 will be added here -->
+    </div>
+
+    <div class="card-container">
+        <div class="card" id="kuldvillak-card">
+            <div class="front">
+                <div id="kuldvillak-category">This is the category of the final question. Click to reveal the question.</div>
+            </div>
+            <div class="back">
+                <div id="kuldvillak-question">This is the KULDVILLAK question.</div>
+                <button class="show-answer-button" id="reveal-answer-button">Reveal Answer</button>
+                <div id="kuldvillak-answer" style="display: none; margin-top: 20px;">
+                    This is the KULDVILLAK answer.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const card = document.getElementById('kuldvillak-card');
+            const revealAnswerButton = document.getElementById('reveal-answer-button');
+            const kuldvillakAnswer = document.getElementById('kuldvillak-answer');
+
+            // Flip the card to show the question when clicked
+            card.addEventListener('click', () => {
+                card.classList.toggle('flipped');
+            });
+
+            // Show the answer when the "Reveal Answer" button is clicked
+            revealAnswerButton.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevent card from flipping back
+                kuldvillakAnswer.style.display = 'block';
+                revealAnswerButton.style.display = 'none';
+            });
+
+            const teamScores = JSON.parse(localStorage.getItem('teamScores'));
+            const teamScoresContainer = document.getElementById('team-scores');
+
+            teamScores.filter(team => team.score > 0).forEach((team, index) => {
+                const teamDiv = document.createElement('div');
+                teamDiv.className = 'team';
+                teamDiv.dataset.teamIndex = index;
+
+                const scoreElement = document.createElement('p');
+                scoreElement.id = `team-${index}-score`;
+                scoreElement.className = 'editable-score';
+                scoreElement.contentEditable = 'true';
+                scoreElement.innerText = team.score;
+                scoreElement.style.color = team.score < 0 ? 'red' : 'white';
+
+                scoreElement.addEventListener('blur', () => {
+                    let newScore = parseInt(scoreElement.innerText, 10);
+                    if (isNaN(newScore)) {
+                        newScore = 0;
+                    }
+                    team.score = newScore;
+                    scoreElement.innerText = team.score;
+                    scoreElement.style.color = team.score < 0 ? 'red' : 'white';
+                });
+
+                teamDiv.innerHTML = `<h3>${team.name}</h3>`;
+                teamDiv.appendChild(scoreElement);
+                teamScoresContainer.appendChild(teamDiv);
+            });
+        });
+    </script>
+</body>
+</html>
