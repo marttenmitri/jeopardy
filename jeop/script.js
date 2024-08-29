@@ -92,19 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
         teamItem.classList.add('shake');
     }
 
-    function highlightTeam(index) {
-        // Remove previous highlights
-        document.querySelectorAll('.team').forEach(team => {
-            team.classList.remove('highlighted-team');
-            team.classList.remove('round-winner');
-        });
-        // Highlight the team at the given index
-        const teamElements = document.querySelectorAll('.team');
-        if (teamElements[index]) {
-            teamElements[index].classList.add('highlighted-team');
-        }
-    }
-
     function highlightWinningTeam(index) {
         const teamElements = document.querySelectorAll('#team-scores .team');
 

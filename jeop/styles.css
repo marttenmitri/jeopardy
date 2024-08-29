@@ -116,7 +116,7 @@ button {
 /* Game section styling */
 #game-section {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1800px;
     margin: 50px auto 0;
     padding-top: 20px;
 }
@@ -126,7 +126,7 @@ button {
     display: flex;
     justify-content: space-around;
     margin: 20px 0;
-    gap: 10px;
+    gap: 5px;
     width: 100%;
 }
 
@@ -142,12 +142,8 @@ button {
     justify-content: space-between;
 }
 
-.highlighted-team {
-    background-color: #ffa500;
-}
-
 .round-winner {
-    background-color: #00bfff;
+    background-color: #2ecc71;
     transition: background-color 0.3s ease;
 }
 
@@ -176,19 +172,20 @@ button {
 #game-board {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
+    gap: 5px;
 }
 
 .category {
     background-color: #0055a5;
     padding: 20px;
     text-align: center;
-    font-size: 1.5em;
+    font-size: 2em;
     border-radius: 5px;
 }
 
 .question {
-    background-color: #007bff;
+    background-color: #0055a5;
+    color: gold;
     padding: 50px;
     text-align: center;
     font-size: 2em;
@@ -197,7 +194,7 @@ button {
 }
 
 .question:hover {
-    background-color: #0056b3;
+    background-color: #0068d8;
 }
 
 /* Modal styling */
@@ -215,7 +212,7 @@ button {
 }
 
 .modal-content {
-    background-color: #333;
+    background-color: #0056b3;
     padding: 40px;
     border-radius: 10px;
     width: 80%;
@@ -251,10 +248,12 @@ button {
 }
 
 .red {
+    color: #ffffff;
     background-color: #e74c3c;
 }
 
 .green {
+    color: #ffffff;
     background-color: #2ecc71;
 }
 
@@ -272,6 +271,7 @@ button {
 
 .team-select-button {
     background-color: #007bff;
+    color: #ffffff;
     padding: 10px 20px;
     font-size: 1.2em;
     border: none;
@@ -281,7 +281,7 @@ button {
 }
 
 .team-select-button:hover {
-    background-color: #0056b3;
+    background-color: #0068d7;
 }
 
 #kuldvillak-button {
